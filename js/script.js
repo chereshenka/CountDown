@@ -1,7 +1,8 @@
 const items = document.querySelectorAll('.count-item > h3');
+let container = document.getElementById('box');
 
 //set end date
-let countDownDate = new Date(2022, 4, 15, 16, 10, 0, 0).getTime();
+let countDownDate = new Date(2022, 3, 15, 15, 59, 0, 0).getTime();
 
 function countDownTime(){
    let difference = countDownDate - Date.now();
@@ -25,8 +26,11 @@ function countDownTime(){
       item.textContent = timeValues[index];
    });
 
-   console.log(difference);
-   
+   if(difference < 0){
+   clearInterval(countDownInterval);
+   container.innerHTML = '<p class="count-item">Время вышло!</p>';
+   }
+
 }
 
 let countDownInterval = setInterval(countDownTime, 1000);
